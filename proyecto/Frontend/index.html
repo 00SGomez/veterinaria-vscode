@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VetMap Bogotá</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css"/>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- ─── NAVBAR ─── -->
+<nav class="navbar">
+    <div class="navbar-brand">
+        <span class="brand-icon">🐾</span>
+        <span class="brand-text">VetMap <em>Bogotá</em></span>
+    </div>
+
+    <ul class="nav-list">
+        <!-- Mapa -->
+        <li>
+            <button class="nav-btn accent" id="btn_Mapveterinaria">
+                <span class="nav-icon">📍</span> Ver Vets en mapa
+            </button>
+        </li>
+
+        <!-- Información -->
+        <li class="has-dropdown">
+            <button class="nav-btn dropdown-trigger">
+                <span class="nav-icon">ℹ️</span> Información <span class="chevron">▾</span>
+            </button>
+            <ul class="dropdown">
+                <li><button class="drop-item" id="info_distancia">📏 Distancias</button></li>
+                <li><button class="drop-item" id="info_costos">💰 Costos servicio</button></li>
+                <li><button class="drop-item" id="info_numemergencia">🚨 Núm. emergencia</button></li>
+                <li><button class="drop-item" id="info_seguridad">🐾 Seguridad mascotas</button></li>
+            </ul>
+        </li>
+
+        <!-- Veterinarias -->
+        <li class="has-dropdown">
+            <button class="nav-btn dropdown-trigger">
+                <span class="nav-icon">🏥</span> Veterinarias <span class="chevron">▾</span>
+            </button>
+            <ul class="dropdown">
+                <li><button class="drop-item" id="est_lista">📋 Lista completa</button></li>
+            </ul>
+        </li>
+
+        <!-- Análisis -->
+        <li class="has-dropdown">
+            <button class="nav-btn dropdown-trigger">
+                <span class="nav-icon">📊</span> Análisis <span class="chevron">▾</span>
+            </button>
+            <ul class="dropdown">
+                <li><button class="drop-item" id="analizar">🔍 Resumen ciudad</button></li>
+            </ul>
+        </li>
+    </ul>
+</nav>
+
+<!-- ─── BUSCADOR FLOTANTE ─── -->
+<div class="search-bar">
+    <div class="search-inner">
+        <span class="search-label">Buscar veterinarias cerca de:</span>
+        <input type="number" id="input-lat" placeholder="Latitud  ej: 4.6532" step="0.0001">
+        <input type="number" id="input-lon" placeholder="Longitud ej: -74.0836" step="0.0001">
+        <input type="number" id="input-radio" placeholder="Radio km" value="5" min="0.5" max="50" step="0.5">
+        <select id="input-animal">
+            <option value="">Todos los animales</option>
+            <option value="perros">🐶 Perros</option>
+            <option value="gatos">🐱 Gatos</option>
+            <option value="aves">🦜 Aves</option>
+            <option value="conejos">🐇 Conejos</option>
+            <option value="reptiles">🦎 Reptiles</option>
+        </select>
+        <select id="input-seguridad">
+            <option value="">Toda seguridad</option>
+            <option value="alta">🟢 Alta</option>
+            <option value="media">🟡 Media</option>
+            <option value="baja">🔴 Baja</option>
+        </select>
+        <button class="btn-buscar" id="btn-buscar-radio">
+            🔍 Buscar
+        </button>
+    </div>
+</div>
+
+<!-- ─── PANEL DE INFORMACIÓN ─── -->
+<div id="info-panel" class="info-panel hidden">
+    <div class="panel-header">
+        <span id="panel-title">Información</span>
+        <button class="panel-close" id="close-panel">✕</button>
+    </div>
+    <div id="info-content"></div>
+</div>
+
+<!-- ─── MAPA ─── -->
+<div id="map"></div>
+
+<!-- ─── TOAST ─── -->
+<div id="toast" class="toast hidden"></div>
+
+<script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+<script src="datos.js"></script>
+<script src="logica.js"></script>
+<script src="program.js"></script>
+</body>
+</html>
